@@ -11,6 +11,8 @@ function Start-Main()
   {
     Unregister-HotKeys
     $Script:ThisIcon.Visible = $false
+
+    [System.Environment]::Exit(0)
   }
   
   function Create-ThisIcon()
