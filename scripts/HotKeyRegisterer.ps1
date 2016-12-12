@@ -31,9 +31,13 @@ New-Module -ArgumentList $thisDirectoryPath {
     {
       $keyList = $KeyString.ToUpper().Split('+') | foreach{ $_.Trim() }
 
-      $modkey = ($keyList | Get-ModifierKeyValue) -join ' -bor ' | Invoke-Expression
+      # extract modifier key
+      $modkey = ($keyList | Get-ModifierKeyValue) -join ' -bor '
+      $modkey = Invoke-Expression $modkey # evaluate binary OR
 
-      $key = ($keyList | where{ -not($MODKEY_VALUE_TABLE.Contains($_)) } | foreach{ [Windows.Forms.Keys]::"$_" })[0]
+      # extract key
+      $key = ($keyList | where{ -not($MODKEY_VALUE_TABLE.Contains($_)) })[0]
+      $key = "$key" -as [Windows.Forms.Keys]
 
       return $modkey, $key
     }
