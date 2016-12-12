@@ -8,7 +8,7 @@ New-Module -ArgumentList $thisDirectoryPath {
   function Register-HotKeys($HotKeyList)
   {
     Add-Type -Path (Join-Path $thisDirectoryPath 'HotKeyManager.cs') `
-             -ReferencedAssemblies 'System.Windows.Forms'
+             -ReferencedAssemblies ('System.Windows.Forms', 'System.Core')
     $Script:HotKeyManagerInstance = New-Object HotKeyManager
 
     $MODKEY_VALUE_TABLE = @{
