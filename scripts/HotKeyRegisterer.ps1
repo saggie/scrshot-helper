@@ -29,15 +29,11 @@ New-Module -ArgumentList $thisDirectoryPath {
 
     function DivideInto-ModKeyAndKey($KeyString)
     {
-      $keyList = $KeyString.ToUpper().Split('+') | foreach{ $_.Trim() }
 
       # extract modifier key
-      $modkey = ($keyList | Get-ModifierKeyValue) -join ' -bor '
-      $modkey = Invoke-Expression $modkey # evaluate binary OR
+      $modkey = $modkeyList -join ' -bor ' | Invoke-Expression # evaluate binary OR
 
       # extract key
-      $key = ($keyList | where{ -not($MODKEY_VALUE_TABLE.Contains($_)) })[0]
-      $key = "$key" -as [Windows.Forms.Keys]
 
       return $modkey, $key
     }
