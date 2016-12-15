@@ -1,3 +1,4 @@
+$thisDirectoryPath = Split-Path $MyInvocation.MyCommand.Path -Parent
 Invoke-Expression (Join-Path $thisDirectoryPath 'Get-ActiveWindowRect.ps1') | Out-Null
 
 New-Module {
