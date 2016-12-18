@@ -19,7 +19,7 @@ New-Module {
     
     if ($clipboardImage)
     {
-      $outputFileName = "scrshot_" + [Convert]::ToString((Get-Date).Ticks, 16).SubString(0, 10) + ".png"
+      $outputFileName = "scrshot_" + [Convert]::ToString((Get-Date).Ticks, 16).SubString(2, 7) + ".png"
       $outputFilePath = Join-Path (Join-Path $Env:UserProfile "Desktop") $outputFileName
       $clipboardImage.Save($outputFilePath)
     }
